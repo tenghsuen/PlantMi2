@@ -1,46 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StartPage">
+    tools:context=".StartPage"
+    android:orientation="vertical"
+    android:background="#C8CFD6">
 
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Add Plant Photo"
-        android:id="@+id/photoButton"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Add Plant Photo"
-        android:id="@+id/waterButton"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/capturedImage"
         android:layout_width="250dp"
         android:layout_height="320dp"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center"
+        android:src="@drawable/plantmi_logo"/>
     <TextView
-        android:id="@+id/simpleTextView"
-        android:layout_width="fill_parent"
+        android:id="@+id/Heading1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start Page"
+        android:text="Welcome to PlantMi"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:textColor="#3B3F5F"
+        android:layout_marginStart="32dp"
+        android:gravity="center_horizontal"/> <!--center horizontal gravity-->
+
+    <TextView
+        android:id="@+id/Heading2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Smart Gardening"
         android:textStyle="bold"
         android:textSize="20sp"
-        android:textColor="#000"
+        android:textColor="#3B3F5F"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="15dp"
         android:gravity="center_horizontal"/> <!--center horizontal gravity-->
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Get Started"
+        android:layout_marginTop="20dp"
+        android:id="@+id/getstartedBtn">
+    </androidx.appcompat.widget.AppCompatButton>
+
+</LinearLayout>
