@@ -13,7 +13,7 @@
     <TextView
         android:id="@+id/simpleTextView"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height= "wrap_content"
         android:text="Login"
         android:textStyle="bold"
         android:textSize="30sp"
@@ -41,7 +41,8 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editPassword"
             android:layout_width="match_parent"
@@ -50,21 +51,25 @@
             android:inputType="textPassword"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/loginbutton"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_bg"
+        android:fontFamily="@font/lato_bold"
         android:text="Login"
-        android:layout_marginTop="10dp">
-    </Button>
+        android:textColor="@color/text_color"></androidx.appcompat.widget.AppCompatButton>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/registerbutton"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_bg"
+        android:fontFamily="@font/lato_bold"
         android:text="Register"
-        android:layout_marginTop="10dp">
-    </Button>
+        android:textColor="@color/text_color"></androidx.appcompat.widget.AppCompatButton>
 
 
 </LinearLayout>

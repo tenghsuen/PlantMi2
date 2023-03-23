@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "655267876043",
+    "firebase_url": "https://plantmi-c4d3f-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "plantmi-c4d3f",
+    "storage_bucket": "plantmi-c4d3f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:655267876043:android:4eec1ed0e690b66ceddf4e",
+        "android_client_info": {
+          "package_name": "com.example.plantmi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "655267876043-jq5rch6ds0glnoh3829qdjcc137bqhhq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJiFJe-6M35EeMziD8DC4xuvh2FlAmCSs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "655267876043-jq5rch6ds0glnoh3829qdjcc137bqhhq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

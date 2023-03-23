@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,43 +8,81 @@
     android:orientation="vertical"
     android:background="#C8CFD6">
 
-
     <ImageView
         android:id="@+id/capturedImage"
-        android:layout_width="250dp"
+        android:layout_width="340dp"
         android:layout_height="320dp"
-        android:layout_gravity="center"
-        android:src="@drawable/plantmi_logo"/>
+        android:layout_centerHorizontal="true"
+        android:foregroundGravity="center"
+        android:layout_marginTop="70dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/plantmi_logo" />
+
+    <ImageView
+        android:id="@+id/whiterec"
+        android:layout_width="403dp"
+        android:layout_height="395dp"
+        android:layout_centerHorizontal="true"
+        android:foregroundGravity="center"
+        android:layout_marginTop="440dp"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
+        android:src="@drawable/whiterec" />
+
     <TextView
         android:id="@+id/Heading1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome to PlantMi"
-        android:textStyle="bold"
-        android:textSize="30sp"
-        android:textColor="#3B3F5F"
         android:layout_marginStart="32dp"
-        android:gravity="center_horizontal"/> <!--center horizontal gravity-->
+        android:gravity="center_horizontal"
+        android:text="Smart Gardening"
+        android:fontFamily="@font/lalezar"
+        android:layout_marginTop="480dp"
+        android:textColor="#3B3F5F"
+        android:textSize="35sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/Heading2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Smart Gardening"
+        android:text="Welcome to PLANTMI"
         android:textStyle="bold"
         android:textSize="20sp"
         android:textColor="#3B3F5F"
+        android:fontFamily="@font/lato_bold"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="15dp"
-        android:gravity="center_horizontal"/> <!--center horizontal gravity-->
+        android:layout_marginTop="535dp"
+        android:gravity="center_horizontal"/>
+    <TextView
+        android:id="@+id/getstarted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get Started"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:textColor="#3B3F5F"
+        android:fontFamily="@font/lato_regular"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="640dp"
+        android:gravity="center_horizontal"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Get Started"
-        android:layout_marginTop="20dp"
-        android:id="@+id/getstartedBtn">
-    </androidx.appcompat.widget.AppCompatButton>
+        android:id="@+id/getstartedBtn"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="615dp"
+        android:layout_marginLeft="260dp"
+        android:background="@drawable/roundbtn"></androidx.appcompat.widget.AppCompatButton>
 
-</LinearLayout>
+    <ImageView
+        android:id="@+id/arrow"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="625dp"
+        android:layout_marginLeft="267dp"
+        android:elevation="3000dp"
+        android:src="@drawable/arrow" />
+
+
+</RelativeLayout>
