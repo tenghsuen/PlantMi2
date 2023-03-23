@@ -71,7 +71,7 @@
         android:id="@+id/test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="test2"
+        android:text="test3"
         android:textStyle="bold"
         android:textSize="20sp"
         android:textColor="#3B3F5F"
