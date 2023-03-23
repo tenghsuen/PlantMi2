@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity"
-    android:background="#C8CFD6">
+    android:background="#C8CFD6"
+    android:gravity="center">
 
     <TextView
         android:id="@+id/user_email"
@@ -15,15 +16,17 @@
         android:text="Hello!"
         android:textStyle="bold"
         android:textSize="15sp"
-        android:textColor="#000"
-        android:padding="10dp"/>
-
+        android:textColor="#000"/>
     <Button
         android:id="@+id/logout"
         android:text="Logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp"/>
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:padding="10dp"
+        android:textColor="#000"/>
 
     <ImageView
         android:id="@+id/charaImageView"
@@ -35,12 +38,13 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/startButton"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Set Time"
+        android:layout_marginTop="10dp"
         android:background="@drawable/btn_bg"
-        android:layout_marginTop="20dp">
+        android:fontFamily="@font/lato_bold"
+        android:text="Set Time"
+        android:textColor="@color/text_color">
     </androidx.appcompat.widget.AppCompatButton>
 
     <TextView

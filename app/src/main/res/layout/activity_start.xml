@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".StartPage"
     android:orientation="vertical"
-    android:background="#C8CFD6">
+    android:background="#C8CFD6"
+    android:gravity="center">
 
     <ImageView
         android:id="@+id/capturedImage"

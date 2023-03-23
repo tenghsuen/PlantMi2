@@ -29,6 +29,13 @@ public class PlantProfilePage extends AppCompatActivity {
                 startActivityForResult(camera,camera_code);
             }
         });
+        waterBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PlantProfilePage.this, PlantStatus.class);
+                startActivity(intent);
+            }
+        });
     }
         @Override
         protected void onActivityResult(int requestCode, int resultCode,@Nullable Intent data){

@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PlantProfilePage"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#C8CFD6">
 
     <ImageView
         android:id="@+id/capturedImage"
@@ -43,20 +44,27 @@
         android:id="@+id/PlantImage"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_bg"
+        android:fontFamily="@font/lato_bold"
         android:text="Add Plant Photo"
         android:id="@+id/OpenCamera"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:textColor="@color/text_color">
     </androidx.appcompat.widget.AppCompatButton>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Water Plants"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_bg"
+        android:fontFamily="@font/lato_bold"
         android:id="@+id/waterButton"
-        android:layout_gravity="center">
+        android:layout_gravity="center"
+        android:text="Plant Status"
+        android:textColor="@color/text_color">
     </androidx.appcompat.widget.AppCompatButton>
 
 
