@@ -14,7 +14,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
-    Button startBtn, logoutBtn;
+    Button timeBtn, logoutBtn;
     FirebaseAuth auth;
     FirebaseUser user;
     TextView textView;
@@ -26,19 +26,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         logoutBtn=findViewById(R.id.logout);
         auth=FirebaseAuth.getInstance();
-        startBtn=findViewById(R.id.startButton);
+        timeBtn=findViewById(R.id.setTimeButton);
         textView=findViewById(R.id.user_email);
         user=auth.getCurrentUser();
         if (user==null){
-            Intent intent = new Intent(MainActivity.this, LoginPage.class);
+            Intent intent = new Intent(MainActivity.this, PlantProfilePage.class);
             startActivity(intent);
             finish();
         }
         else {
             textView.setText(user.getEmail());
         }
-        //TODO 1.6 for startButton, invoke the setOnClickListener method
-        startBtn.setOnClickListener(new View.OnClickListener(){
+        //TODO 1.6 for timeButton, invoke the setOnClickListener method
+        timeBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 Intent intent = new Intent(MainActivity.this, PlantProfilePage.class);
