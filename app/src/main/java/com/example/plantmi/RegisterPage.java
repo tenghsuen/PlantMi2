@@ -28,7 +28,7 @@ public class RegisterPage extends AppCompatActivity {
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if(currentUser != null){
-            Intent intent = new Intent(RegisterPage.this,MainActivity.class);
+            Intent intent = new Intent(RegisterPage.this,PlantProfilePage.class);
             startActivity(intent);
             finish();
         }
