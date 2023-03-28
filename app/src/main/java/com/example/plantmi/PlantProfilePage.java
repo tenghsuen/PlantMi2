@@ -25,6 +25,8 @@ public class PlantProfilePage extends AppCompatActivity {
     ImageView imageView;
     TextView addImgText;
     private final int camera_code=100;
+    View plantStatus;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +37,7 @@ public class PlantProfilePage extends AppCompatActivity {
         logoutBtn=findViewById(R.id.logout);
         addImgText = findViewById(R.id.simpleTextView);
         imageView=findViewById(R.id.capturedImage);
+        plantStatus=findViewById(R.id.plantstatus);
         waterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,6 +93,14 @@ public class PlantProfilePage extends AppCompatActivity {
                 Intent intent = new Intent(PlantProfilePage.this, LoginPage.class);
                 startActivity(intent);
                 finish();
+            }
+        });
+
+        plantStatus.setOnTouchListener(new OnSwipeTouchListener(PlantProfilePage.this) {
+            public void onSwipeTop() {
+                Intent i = new Intent(PlantProfilePage.this, PlantStatus.class);
+                startActivity(i);
+                overridePendingTransition( R.anim.slide_in_up, R.anim.slide_out_up );
             }
         });
     }
