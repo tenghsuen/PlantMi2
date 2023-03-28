@@ -72,6 +72,18 @@
         android:textColor="@color/text_color">
     </androidx.appcompat.widget.AppCompatButton>
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="540dp"
+        android:background="@drawable/btn_bg"
+        android:fontFamily="@font/lato_bold"
+        android:id="@+id/GalleryButton"
+        android:text="Add from Gallery"
+        android:textColor="@color/text_color">
+    </androidx.appcompat.widget.AppCompatButton>
+
     <ImageView
         android:layout_width="30dp"
         android:layout_height="30dp"
