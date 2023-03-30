@@ -19,12 +19,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 
 public class PlantProfilePage extends AppCompatActivity {
     Button openCamera, waterBtn, logoutBtn, galleryBtn;
     ImageView imageView;
     TextView addImgText;
-    private final int camera_code=100;
+    FirebaseAuth auth;
     View plantStatus;
 
     @Override
@@ -38,6 +47,37 @@ public class PlantProfilePage extends AppCompatActivity {
         addImgText = findViewById(R.id.simpleTextView);
         imageView=findViewById(R.id.capturedImage);
         plantStatus=findViewById(R.id.plantstatus);
+        auth=FirebaseAuth.getInstance();
+        FirebaseUser currentUser = auth.getCurrentUser();
+        
+        // Check if user is logged in
+        if (currentUser != null) { 
+            // User signed in successfully, check if they have a picture stored in Firebase Storage
+            String uid = currentUser.getUid();
+            StorageReference storageRef = FirebaseStorage.getInstance().getReference();
+            StorageReference photoRef = storageRef.child("images/" + currentUser.getEmail() + "/" + uid);
+
+            photoRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                @Override
+                public void onSuccess(Uri uri) {
+                    // Check if the image belongs to the current user
+                    String filename = uri.getLastPathSegment();
+                    if (filename != null && filename.contains(uid)) {
+                        // Picture found, load it into the ImageView
+                        Picasso.get().load(uri).into(imageView);
+                    } else {
+                        // Image does not belong to current user, do nothing
+                        Toast.makeText(PlantProfilePage.this, "Image Unavailable", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    // Profile picture not found, do nothing
+                    Toast.makeText(PlantProfilePage.this, "Image retrieve unsuccessfully", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
         waterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,16 +89,60 @@ public class PlantProfilePage extends AppCompatActivity {
         final ActivityResultLauncher<Intent> launcherGallery = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
-                    @Override
                     public void onActivityResult(ActivityResult result) {
-                        if( result.getResultCode() == Activity.RESULT_OK
-                                && result.getData() != null){
+                        if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
                             Uri photoUri = result.getData().getData();
-                            imageView.setImageURI(photoUri);
+                            StorageReference storageRef=FirebaseStorage.getInstance().getReference();
+                            //Create reference of img file in firebase storage
+                            String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                            StorageReference photoRef = storageRef.child("images/"+currentUser.getEmail()+"/"+ uid);
 
+                            //Upload image to firebase storage
+                            //convert image data into byte array
+                            try {
+                                InputStream inputStream = getContentResolver().openInputStream(photoUri);
+                                byte[] yourPhotoToByteArray = getBytes(inputStream);
+
+                                UploadTask uploadTask = photoRef.putBytes(yourPhotoToByteArray);
+                                uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                                    @Override
+                                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                        // Image uploaded successfully, load it into the ImageView
+                                        photoRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                            @Override
+                                            public void onSuccess(Uri uri) {
+                                                Picasso.get().load(uri).into(imageView);
+                                                Toast.makeText(PlantProfilePage.this, "Image uploaded successfully", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                    }
+
+                                }).addOnFailureListener(new OnFailureListener() {
+                                    @Override
+                                    public void onFailure(@NonNull Exception e) {
+                                        Toast.makeText(PlantProfilePage.this, "Image upload failed", Toast.LENGTH_SHORT).show();
+                                    }
+                                });
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                         }
+
                     }
-                }
+
+                    public byte[] getBytes(InputStream inputStream) throws IOException {
+                        ByteArrayOutputStream byteBuffer = new ByteArrayOutputStream();
+                        int bufferSize = 1024;
+                        byte[] buffer = new byte[bufferSize];
+
+                        int len = 0;
+                        while ((len = inputStream.read(buffer)) != -1) {
+                            byteBuffer.write(buffer, 0, len);
+                        }
+
+                        return byteBuffer.toByteArray();
+                    }
+                    }
         );
         ActivityResultLauncher<Intent> launcherCamera = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
