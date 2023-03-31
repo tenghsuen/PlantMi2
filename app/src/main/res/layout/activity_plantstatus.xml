@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".PlantStatus"
     android:orientation="vertical"
-    android:background="@color/dark_blue">
+    android:background="@color/dark_blue"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="match_parent"
@@ -29,70 +30,116 @@
         android:gravity="center|top"
         android:elevation="2dp"/>
 
-    <View
-        android:layout_width="170dp"
-        android:layout_height="130dp"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/moistureLevelStatusCard"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
         android:layout_marginTop="400dp"
-        android:layout_marginLeft="20dp"
-        android:background="@drawable/statusbox"
-        android:backgroundTint="#7BA7B9"
-        android:id="@+id/moistureLevel"
-        android:elevation="2dp"/>
-    <TextView
-        android:id="@+id/moistureLevelTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="420dp"
-        android:layout_alignLeft="@id/moistureLevel"
-        android:layout_marginLeft="24dp"
-        android:text="Moisture Level"
-        android:fontFamily="@font/lato_regular"
-        android:textSize="18dp"
-        android:textColor="@color/text_color"
-        android:elevation="3dp"/>
-    <View
-        android:layout_width="170dp"
-        android:layout_height="130dp"
-        android:layout_marginTop="400dp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
-        android:background="@drawable/statusbox"
-        android:backgroundTint="#919F88"
-        android:id="@+id/phLevel"
-        android:elevation="2dp"/>
-    <TextView
-        android:id="@+id/phLevelTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="420dp"
-        android:layout_alignLeft="@id/phLevel"
-        android:layout_marginLeft="50dp"
-        android:text="pH Level"
-        android:fontFamily="@font/lato_regular"
-        android:textSize="18dp"
-        android:textColor="@color/text_color"
-        android:elevation="3dp"/>
-    <View
-        android:layout_width="170dp"
-        android:layout_height="130dp"
-        android:layout_marginTop="540dp"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/statusbox"
-        android:backgroundTint="#B2AE73"
-        android:id="@+id/lightIntensity"
-        android:elevation="2dp"/>
-    <TextView
-        android:id="@+id/lightIntensityTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="560dp"
-        android:layout_alignLeft="@id/lightIntensity"
-        android:layout_marginLeft="27dp"
-        android:text="Light Intensity"
-        android:fontFamily="@font/lato_regular"
-        android:textSize="18dp"
-        android:textColor="@color/text_color"
-        android:elevation="3dp"/>
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="20dp"
+        app:cardBackgroundColor="#89B8CB"
+        app:cardMaxElevation="12dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true">
+        <RelativeLayout
+            android:id="@+id/moistureLevelCard"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/moistureLevelName"
+                android:background="#89B8CB"
+                android:text="Moisture Level"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="25dp"
+                android:fontFamily="@font/lato_regular"
+                android:textSize="18dp"
+                android:textColor="@color/text_color"/>
+            <TextView
+                android:id="@+id/moistureLevelValue"
+                android:text="--"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="180dp"
+                android:fontFamily="@font/lalezar"
+                android:textSize="30dp"
+                android:textColor="@color/text_color"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/historyMoistureButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="230dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/btn_bg"
+                android:fontFamily="@font/lato_bold"
+                android:text="History"
+                android:textColor="@color/text_color">
+            </androidx.appcompat.widget.AppCompatButton>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/lightIntensityStatusCard"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginTop="520dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="20dp"
+        app:cardBackgroundColor="#CDC98B"
+        app:cardMaxElevation="12dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true">
+        <RelativeLayout
+            android:id="@+id/lightIntensityCard"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/lightIntensityName"
+                android:background="#CDC98B"
+                android:text="Light Intensity"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="25dp"
+                android:fontFamily="@font/lato_regular"
+                android:textSize="18dp"
+                android:textColor="@color/text_color"/>
+            <TextView
+                android:id="@+id/lightIntensityValue"
+                android:text="--"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="180dp"
+                android:fontFamily="@font/lalezar"
+                android:textSize="30dp"
+                android:textColor="@color/text_color"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/historyLightButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="230dp"
+                android:layout_centerInParent="true"
+                android:background="@drawable/btn_bg"
+                android:fontFamily="@font/lato_bold"
+                android:text="History"
+                android:textColor="@color/text_color">
+            </androidx.appcompat.widget.AppCompatButton>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
 </RelativeLayout>
