@@ -18,6 +18,7 @@
         android:elevation="1dp"
         android:scaleType="fitXY">
     </androidx.appcompat.widget.AppCompatButton>
+
     <TextView
         android:id="@+id/plantStatusTextView"
         android:layout_width="fill_parent"
@@ -29,6 +30,48 @@
         android:textColor="@color/text_color"
         android:gravity="center|top"
         android:elevation="2dp"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/white_bg"
+        android:scaleType="fitXY"
+        android:layout_marginTop="200dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lalezar"
+        android:id="@+id/name"
+        android:text="Radish"
+        android:textSize="40dp"
+        android:textColor="@color/text_color"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="315dp"
+        android:elevation="2000dp"/>
+
+    <ImageButton
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/edit"
+        android:id="@+id/edit"
+        android:elevation="200dp"
+        android:backgroundTint="@color/transparent"
+        android:layout_marginTop="317dp"
+        android:layout_marginLeft="320dp"
+        android:scaleType="fitCenter"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/lato_bold"
+        android:id="@+id/desc"
+        android:text="Hi! I am your beloved plant."
+        android:textSize="18dp"
+        android:textColor="@color/text_color"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="370dp"
+        android:elevation="2000dp"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/moistureLevelStatusCard"
@@ -43,10 +86,12 @@
         app:cardMaxElevation="12dp"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true">
+
         <RelativeLayout
             android:id="@+id/moistureLevelCard"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <TextView
                 android:id="@+id/moistureLevelName"
                 android:background="#89B8CB"
@@ -59,6 +104,7 @@
                 android:fontFamily="@font/lato_regular"
                 android:textSize="18dp"
                 android:textColor="@color/text_color"/>
+
             <TextView
                 android:id="@+id/moistureLevelValue"
                 android:text="--"
@@ -70,6 +116,8 @@
                 android:fontFamily="@font/lalezar"
                 android:textSize="30dp"
                 android:textColor="@color/text_color"/>
+
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/historyMoistureButton"
                 android:layout_width="wrap_content"
@@ -83,7 +131,9 @@
                 android:text="History"
                 android:textColor="@color/text_color">
             </androidx.appcompat.widget.AppCompatButton>
+
         </RelativeLayout>
+
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView

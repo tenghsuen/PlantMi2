@@ -46,12 +46,11 @@ public class PlantProfilePage extends AppCompatActivity {
         setContentView(R.layout.activity_plantprofile);
         openCamera = findViewById(R.id.OpenCamera);
         waterBtn = findViewById(R.id.waterButton);
-        galleryBtn=findViewById(R.id.GalleryButton);
-        logoutBtn=findViewById(R.id.logout);
-        addImgText = findViewById(R.id.simpleTextView);
-        imageView=findViewById(R.id.capturedImage);
-        plantStatus=findViewById(R.id.plantstatus);
-        auth=FirebaseAuth.getInstance();
+        galleryBtn = findViewById(R.id.GalleryButton);
+        logoutBtn = findViewById(R.id.logout);
+        imageView = findViewById(R.id.capturedImage);
+        plantStatus = findViewById(R.id.plantstatus);
+        auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
         
         // Check if user is logged in
