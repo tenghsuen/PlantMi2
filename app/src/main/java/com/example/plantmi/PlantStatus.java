@@ -2,16 +2,19 @@ package com.example.plantmi;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -25,12 +28,15 @@ public class PlantStatus extends AppCompatActivity {
 
     View slidingBar;
     DatabaseReference rootDatabaseReference;
+    DatabaseReference databaseReference;
+    DatabaseReference descRootDatabaseReference;
+    DatabaseReference nameRootDatabaseReference;
     private TextView moistureData;
     private TextView lightData;
-    SensorSoil sensorSoil;
-    SensorLight sensorLight;
     ImageButton editBtn;
     TextView nameOfPlant, descOfPlant;
+    SensorLight sensorLight;
+    SensorSoil sensorSoil;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -53,8 +59,8 @@ public class PlantStatus extends AppCompatActivity {
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PlantStatus.this, EditPlant.class);
-                startActivity(intent);
+                Intent i = new Intent(PlantStatus.this, EditPlant.class);
+                startActivity(i);
             }
         });
 
@@ -98,28 +104,66 @@ public class PlantStatus extends AppCompatActivity {
             }
         });
 
+        rootDatabaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference = rootDatabaseReference.child("sensor_data");
+        moistureData = findViewById(R.id.moistureLevelValue);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        getData();
+
+        String userUID = user.getUid();
+        nameRootDatabaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(userUID).child("plantname");
+        descRootDatabaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(userUID).child("plantdesc");
+        nameRootDatabaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    String data = snapshot.getValue().toString();
+                    nameOfPlant.setText(data);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        descRootDatabaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    String data = snapshot.getValue().toString();
+                    descOfPlant.setText(data);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
-//     private void getData() {
+    private void getData() {
 
-//         databaseReference.addValueEventListener(new ValueEventListener() {
-//             @Override
-//             public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                 for ( DataSnapshot postSnapshot: snapshot.getChildren() ){
-//                     if (postSnapshot.equals("value")) {
-//                         String value = postSnapshot.getValue(String.class);
-//                         moistureData.setText(value);
-//                     }
-//                 }
-//             }
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for ( DataSnapshot postSnapshot: snapshot.getChildren() ){
+                    if (postSnapshot.equals("value")) {
+                        String value = postSnapshot.getValue(String.class);
+                        moistureData.setText(value);
+                    }
+                }
+            }
 
-//             @Override
-//             public void onCancelled(@NonNull DatabaseError error) {
-//                 // calling on cancelled method when we receive
-//                 // any error or we are not able to get the data.
-//                 Toast.makeText(PlantStatus.this, "Failed to get data.", Toast.LENGTH_SHORT).show();
-//             }
-//         });
-//     }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // calling on cancelled method when we receive
+                // any error or we are not able to get the data.
+                Toast.makeText(PlantStatus.this, "Failed to get data.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
 }

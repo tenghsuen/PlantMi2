@@ -51,14 +51,14 @@
         android:elevation="2000dp"/>
 
     <ImageButton
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:src="@drawable/edit"
         android:id="@+id/edit"
         android:elevation="200dp"
-        android:backgroundTint="@color/transparent"
-        android:layout_marginTop="317dp"
-        android:layout_marginLeft="320dp"
+        android:backgroundTint="@android:color/transparent"
+        android:layout_marginTop="325dp"
+        android:layout_marginLeft="290dp"
         android:scaleType="fitCenter"/>
 
     <TextView
