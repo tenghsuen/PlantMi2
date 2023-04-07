@@ -71,6 +71,9 @@ public class PlantStatus extends AppCompatActivity {
                 double d = Double.parseDouble(sensorSoil.getValue().toString());
                 double value = Math.round( (100 - ((d/4095)*100)) );
                 moistureData.setText(Double.toString(value) + "%");
+                if (value<=20){
+                    Toast.makeText(PlantStatus.this, "Remember to water mi!", Toast.LENGTH_LONG).show();
+                }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

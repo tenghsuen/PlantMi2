@@ -14,16 +14,22 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -38,7 +44,9 @@ public class PlantProfilePage extends AppCompatActivity {
     ImageView imageView;
     TextView addImgText;
     FirebaseAuth auth;
-    View plantStatus;
+    private View plantStatus;
+    DatabaseReference rootDatabaseReference;
+    SensorSoil sensorSoil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -190,7 +198,29 @@ public class PlantProfilePage extends AppCompatActivity {
                 overridePendingTransition( R.anim.slide_in_up, R.anim.slide_out_up );
             }
         });
+
+        rootDatabaseReference = FirebaseDatabase.getInstance().getReference();
+        rootDatabaseReference.child("sensor_soil").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    Log.e("Firebase", "Error in getting Moisture Level data", task.getException());
+                }
+                else {
+                    sensorSoil = task.getResult().getValue(SensorSoil.class);
+                    Log.d("Firebase", sensorSoil.getValue().toString());
+                    double d = Double.parseDouble(sensorSoil.getValue().toString());
+                    double value = Math.round( (100 - ((d/4095)*100)) );
+                    if (value <= 20) {
+                        Toast.makeText(PlantProfilePage.this, "Remember to water mi!", Toast.LENGTH_LONG).show();
+                    }
+                }
+            }
+        });
+
+
     }
+
 //        @Override
 //        protected void onActivityResult(int requestCode, int resultCode,@Nullable Intent data){
 //            super.onActivityResult(requestCode,resultCode,data);
@@ -200,6 +230,6 @@ public class PlantProfilePage extends AppCompatActivity {
 //                addImgText.setVisibility(View.INVISIBLE);
 //
 //            }
-       }
+}
 
 
