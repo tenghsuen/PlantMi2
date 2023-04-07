@@ -24,8 +24,10 @@ public class PlantStatus extends AppCompatActivity {
 
     View slidingBar;
     DatabaseReference rootDatabaseReference;
-    DatabaseReference databaseReference;
     private TextView moistureData;
+    private TextView lightData;
+    SensorSoil sensorSoil;
+    SensorLight sensorLight;
     ImageButton editBtn;
     TextView nameOfPlant, descOfPlant;
 
@@ -48,9 +50,9 @@ public class PlantStatus extends AppCompatActivity {
         });
 
         rootDatabaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference = rootDatabaseReference.child("sensor_data");
+        //databaseReference = rootDatabaseReference.child("sensor_data");
         moistureData = findViewById(R.id.moistureLevelValue);
-        getData();
+        lightData = findViewById(R.id.lightIntensityValue);
 
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,26 +63,26 @@ public class PlantStatus extends AppCompatActivity {
         });
     }
 
-    private void getData() {
+//     private void getData() {
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for ( DataSnapshot postSnapshot: snapshot.getChildren() ){
-                    if (postSnapshot.equals("value")) {
-                        String value = postSnapshot.getValue(String.class);
-                        moistureData.setText(value);
-                    }
-                }
-            }
+//         databaseReference.addValueEventListener(new ValueEventListener() {
+//             @Override
+//             public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                 for ( DataSnapshot postSnapshot: snapshot.getChildren() ){
+//                     if (postSnapshot.equals("value")) {
+//                         String value = postSnapshot.getValue(String.class);
+//                         moistureData.setText(value);
+//                     }
+//                 }
+//             }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // calling on cancelled method when we receive
-                // any error or we are not able to get the data.
-                Toast.makeText(PlantStatus.this, "Failed to get data.", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+//             @Override
+//             public void onCancelled(@NonNull DatabaseError error) {
+//                 // calling on cancelled method when we receive
+//                 // any error or we are not able to get the data.
+//                 Toast.makeText(PlantStatus.this, "Failed to get data.", Toast.LENGTH_SHORT).show();
+//             }
+//         });
+//     }
 
 }
