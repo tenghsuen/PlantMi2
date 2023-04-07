@@ -43,6 +43,9 @@
             android:name=".PlantStatus"
             android:theme="@style/Theme.PlantMi"
             android:parentActivityName=".PlantProfilePage" />
+        <activity
+            android:name=".EditPlant"
+            android:theme="@style/Theme.PlantMi" />
 
     </application>
 

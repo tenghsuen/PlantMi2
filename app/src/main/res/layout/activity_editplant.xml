@@ -8,27 +8,28 @@
     android:orientation="vertical"
     android:background="@color/translucent">
 
-    <EditText
+
+    <com.google.android.material.textfield.TextInputEditText
         android:layout_width="380dp"
         android:layout_height="70dp"
         android:id="@+id/plantname"
         android:layout_centerHorizontal="true"
         android:background="@drawable/btn_bg"
         android:layout_marginTop="100dp"
-        android:text="Plant Name"
-        android:textColor="@color/dark_blue"
+        android:hint="Plant Name"
+        android:textColorHint="@color/dark_blue"
         android:paddingLeft="30dp"
         android:fontFamily="@font/lato_regular"/>
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:layout_width="380dp"
         android:layout_height="140dp"
         android:id="@+id/plantdescription"
         android:layout_centerHorizontal="true"
         android:background="@drawable/btn_bg"
         android:layout_marginTop="200dp"
-        android:text="Plant Description"
-        android:textColor="@color/dark_blue"
+        android:hint="Plant Description"
+        android:textColorHint="@color/dark_blue"
         android:paddingLeft="30dp"
         android:fontFamily="@font/lato_regular"/>
 
