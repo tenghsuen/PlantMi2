@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditPlant"
+    android:orientation="vertical"
+    android:background="@color/translucent">
+
+    <EditText
+        android:layout_width="380dp"
+        android:layout_height="70dp"
+        android:id="@+id/plantname"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/btn_bg"
+        android:layout_marginTop="100dp"
+        android:text="Plant Name"
+        android:textColor="@color/dark_blue"
+        android:paddingLeft="30dp"
+        android:fontFamily="@font/lato_regular"/>
+
+    <EditText
+        android:layout_width="380dp"
+        android:layout_height="140dp"
+        android:id="@+id/plantdescription"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/btn_bg"
+        android:layout_marginTop="200dp"
+        android:text="Plant Description"
+        android:textColor="@color/dark_blue"
+        android:paddingLeft="30dp"
+        android:fontFamily="@font/lato_regular"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/save"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="380dp"
+        android:background="@drawable/roundbtn"
+        android:fontFamily="@font/lato_regular"
+        android:textSize="14dp"
+        android:textAlignment="center"
+        android:text="SAVE"
+        android:textColor="@color/white" />
+
+
+
+
+
+
+
+
+</RelativeLayout>

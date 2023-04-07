@@ -3,6 +3,7 @@ package com.example.plantmi;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,13 +26,18 @@ public class PlantStatus extends AppCompatActivity {
     DatabaseReference rootDatabaseReference;
     DatabaseReference databaseReference;
     private TextView moistureData;
+    ImageButton editBtn;
+    TextView nameOfPlant, descOfPlant;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plantstatus);
 
-        slidingBar=findViewById(R.id.plantStatusSlidingBar);
+        slidingBar = findViewById(R.id.plantStatusSlidingBar);
+        editBtn = findViewById(R.id.edit);
+        nameOfPlant = findViewById(R.id.name);
+        descOfPlant = findViewById(R.id.desc);
 
         slidingBar.setOnTouchListener(new OnSwipeTouchListener(PlantStatus.this) {
             public void onSwipeBottom() {
@@ -45,6 +51,14 @@ public class PlantStatus extends AppCompatActivity {
         databaseReference = rootDatabaseReference.child("sensor_data");
         moistureData = findViewById(R.id.moistureLevelValue);
         getData();
+
+        editBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PlantStatus.this, EditPlant.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void getData() {
