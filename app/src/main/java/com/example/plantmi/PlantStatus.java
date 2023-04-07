@@ -2,6 +2,7 @@ package com.example.plantmi;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -49,11 +50,6 @@ public class PlantStatus extends AppCompatActivity {
             }
         });
 
-        rootDatabaseReference = FirebaseDatabase.getInstance().getReference();
-        //databaseReference = rootDatabaseReference.child("sensor_data");
-        moistureData = findViewById(R.id.moistureLevelValue);
-        lightData = findViewById(R.id.lightIntensityValue);
-
         editBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,6 +57,44 @@ public class PlantStatus extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        rootDatabaseReference = FirebaseDatabase.getInstance().getReference();
+        //databaseReference = rootDatabaseReference.child("sensor_data");
+        moistureData = findViewById(R.id.moistureLevelValue);
+        lightData = findViewById(R.id.lightIntensityValue);
+
+        rootDatabaseReference.child("sensor_soil").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                sensorSoil = snapshot.getValue(SensorSoil.class);
+                Log.d("Firebase",sensorSoil.getValue().toString());
+                double d = Double.parseDouble(sensorSoil.getValue().toString());
+                double value = Math.round( (100 - ((d/4095)*100)) );
+                moistureData.setText(Double.toString(value) + "%");
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // calling on cancelled method when we receive
+                // any error or we are not able to get the data.
+                Toast.makeText(PlantStatus.this, "Failed to get Moisture Level data.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        rootDatabaseReference.child("sensor_light").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                sensorLight = snapshot.getValue(SensorLight.class);
+                Log.d("Firebase",sensorLight.getValue().toString());
+                lightData.setText(sensorLight.getValue().toString() + "units");
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // calling on cancelled method when we receive
+                // any error or we are not able to get the data.
+                Toast.makeText(PlantStatus.this, "Failed to get Light Intensity data.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
 //     private void getData() {
