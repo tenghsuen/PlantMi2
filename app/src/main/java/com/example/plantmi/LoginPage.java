@@ -17,6 +17,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthInvalidUserException;
 import com.google.firebase.auth.FirebaseUser;
 
 public class LoginPage extends AppCompatActivity {
@@ -58,11 +60,15 @@ public class LoginPage extends AppCompatActivity {
             @Override
             public void onClick(View view){
                 String email,password;
-                email=editEmail.getText().toString();
+                email=editEmail.getText().toString().trim();
                 password=editPassword.getText().toString();
 
                 if(TextUtils.isEmpty(email)){
                     Toast.makeText(LoginPage.this,"Enter email address", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+                    Toast.makeText(LoginPage.this,"Enter a valid email address", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(TextUtils.isEmpty(password)){
@@ -82,8 +88,16 @@ public class LoginPage extends AppCompatActivity {
 
                                 } else {
                                     // If sign in fails, display a message to the user.
-
-                                    Toast.makeText(LoginPage.this, "Login Failed. Please try again ^.^", Toast.LENGTH_SHORT).show();
+                                    if (task.getException() instanceof FirebaseAuthInvalidUserException) {
+                                        // The email address is not registered
+                                        Toast.makeText(LoginPage.this, "This email address is not registered.", Toast.LENGTH_SHORT).show();
+                                    } else if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
+                                        // The password is incorrect
+                                        Toast.makeText(LoginPage.this, "The password is incorrect.", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        // Any other error
+                                        Toast.makeText(LoginPage.this, "Login Failed. Please try again ^.^", Toast.LENGTH_SHORT).show();
+                                    }
                                 }
                             }
                         });
