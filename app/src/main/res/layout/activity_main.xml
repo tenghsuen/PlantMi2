@@ -48,14 +48,16 @@
         android:textColor="@color/text_color">
     </androidx.appcompat.widget.AppCompatButton>
 
-    <TextView
-        android:id="@+id/simpleTextView"
-        android:layout_width="fill_parent"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/waterButton"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="My first ever potted plant"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:textColor="#000"
-        android:gravity="center_horizontal"/> <!--center horizontal gravity-->
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_bg"
+        android:fontFamily="@font/lato_bold"
+        android:text="Start Watering"
+        android:textColor="@color/text_color">
+    </androidx.appcompat.widget.AppCompatButton>
+    
 
 </LinearLayout>
