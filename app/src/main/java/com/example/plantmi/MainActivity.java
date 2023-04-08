@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
     Button timeBtn, logoutBtn, waterButton;
@@ -19,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     FirebaseUser user;
     TextView textView;
     private ImageView imageView;
+
+    DatabaseReference waterRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         
-        DatabaseReference waterRef = FirebaseDatabase.getInstance().getReference().child("water_plant").child("value");
+        waterRef = FirebaseDatabase.getInstance().getReference().child("water_plant").child("value");
         waterButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
