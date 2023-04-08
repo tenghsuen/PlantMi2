@@ -16,56 +16,75 @@
         android:layout_centerHorizontal="true"
         android:src="@drawable/scanner"/>
 
+    <!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:layout_width="250dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginTop="420dp"-->
+<!--        android:background="@drawable/btn_bg"-->
+<!--        android:fontFamily="@font/lato_bold"-->
+<!--        android:text="Add Plant Photo"-->
+<!--        android:id="@+id/OpenCamera"-->
+<!--        android:layout_gravity="center"-->
+<!--        android:textColor="@color/text_color">-->
+<!--    </androidx.appcompat.widget.AppCompatButton>-->
+
     <ImageView
         android:id="@+id/capturedImage"
         android:layout_width="210dp"
         android:layout_height="210dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="135dp"
         android:elevation="2000dp"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/plantmi_base"/>
+        android:src="@drawable/plantmi_base" />
+
+    <ImageButton
+        android:layout_width="69dp"
+        android:layout_height="72dp"
+        android:background="@null"
+        android:scaleType="centerInside"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="5dp"
+        android:src="@drawable/usericon"
+        android:id="@+id/edituser"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Plant Pan"
+        android:textSize="18dp"
+        android:fontFamily="@font/lato_black"
+        android:textColor="@color/brown"
+        android:layout_marginLeft="78dp"
+        android:layout_marginTop="32dp"
+        android:id="@+id/username"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="email"
+        android:textSize="12dp"
+        android:fontFamily="@font/lato_bold"
+        android:textColor="@color/brown"
+        android:layout_marginLeft="78dp"
+        android:layout_marginTop="54dp"
+        android:id="@+id/user_email"/>
 
     <Button
         android:id="@+id/logout"
-        android:text="Logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
         android:padding="10dp"
-        android:textColor="#000"/>
-
-<!--    <TextView-->
-<!--        android:id="@+id/simpleTextView"-->
-<!--        android:layout_width="fill_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="240dp"-->
-<!--        android:text="Add an Image"-->
-<!--        android:textStyle="bold"-->
-<!--        android:fontFamily="@font/lato_bold"-->
-<!--        android:textSize="20sp"-->
-<!--        android:textColor="@color/text_color"-->
-<!--        android:gravity="center_horizontal"/>-->
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="420dp"
-        android:background="@drawable/btn_bg"
-        android:fontFamily="@font/lato_bold"
-        android:text="Add Plant Photo"
-        android:id="@+id/OpenCamera"
-        android:layout_gravity="center"
-        android:textColor="@color/text_color">
-    </androidx.appcompat.widget.AppCompatButton>
+        android:text="Logout"
+        android:textColor="#000" />
 
     <ImageView
         android:layout_width="29dp"
         android:layout_height="29dp"
         android:src="@drawable/addplant"
-        android:layout_marginTop="430dp"
+        android:layout_marginTop="550dp"
         android:layout_marginLeft="80dp"
         android:elevation="3000dp"
         />

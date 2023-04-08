@@ -46,7 +46,9 @@
         <activity
             android:name=".EditPlant"
             android:theme="@style/Theme.PlantMi" />
-
+        <activity
+            android:name=".EditUser"
+            android:theme="@style/Theme.PlantMi" />
     </application>
 
 </manifest>

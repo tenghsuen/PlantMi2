@@ -3,6 +3,7 @@ package com.example.plantmi;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -17,43 +18,37 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 
-public class EditPlant extends AppCompatActivity {
-    TextInputEditText plantName, plantDescription;
+public class EditUser extends AppCompatActivity {
+    TextInputEditText userName;
     Button saveDetails;
     DatabaseReference rootDatabaseReference;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_editplant);
-        plantName = findViewById(R.id.plantname);
-        plantDescription = findViewById(R.id.plantdescription);
+        setContentView(R.layout.activity_edituser);
+        userName = findViewById(R.id.username);
         saveDetails = findViewById(R.id.save);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String userUID = user.getUid();
-        rootDatabaseReference = FirebaseDatabase.getInstance().getReference().child("plants").child(userUID);
+        rootDatabaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(userUID);
         saveDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String updatedName = plantName.getText().toString();
-                String updatedDesc = plantDescription.getText().toString();
+                String updatedName = userName.getText().toString();
                 if(TextUtils.isEmpty(updatedName)){
-                    if(TextUtils.isEmpty(updatedDesc)){
-                        Intent intent = new Intent(EditPlant.this,PlantStatus.class);
-                        startActivity(intent);
-                        finish();
-                    }
+                    Intent intent = new Intent(EditUser.this,PlantProfilePage.class);
+                    startActivity(intent);
+                    finish();
                 }
                 else{
-                    HashMap newPlant = new HashMap<>();
-                    newPlant.put("plantdesc",updatedDesc);
-                    newPlant.put("plantname",updatedName);
-                    rootDatabaseReference.updateChildren(newPlant);
-
-                    Intent intent = new Intent(EditPlant.this, PlantStatus.class);
+                    HashMap newUser = new HashMap<>();
+                    newUser.put("username",updatedName);
+                    newUser.put("user",user.getEmail());
+                    rootDatabaseReference.updateChildren(newUser);
+                    Intent intent = new Intent(EditUser.this, PlantProfilePage.class);
                     startActivity(intent);
                 }
-
             }
         });
 

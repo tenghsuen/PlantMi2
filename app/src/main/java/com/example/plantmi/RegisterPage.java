@@ -28,6 +28,7 @@ public class RegisterPage extends AppCompatActivity {
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
     private User user;
+    private Plant plant;
 
     @Override
     public void onStart() {
@@ -65,7 +66,8 @@ public class RegisterPage extends AppCompatActivity {
                 String email,password;
                 email=addEmail.getText().toString();
                 password=addPassword.getText().toString();
-                user = new User(email,"Radish","Hi! I am your beloved pet!");
+                plant = new Plant("Radish","Hi! I am your beloved pet!");
+                user = new User(email);
 
                 if(TextUtils.isEmpty(email)){
                     Toast.makeText(RegisterPage.this,"Enter email address", Toast.LENGTH_SHORT).show();
@@ -102,7 +104,9 @@ public class RegisterPage extends AppCompatActivity {
 
                                     String UID = currentUser.getUid();
                                     DatabaseReference userRef = databaseReference.child("users");//Create child node reference
+                                    DatabaseReference plantRef = databaseReference.child("plants");
                                     userRef.child(UID).setValue(user);//Insert value to child node
+                                    plantRef.child(UID).setValue(plant);
                                 }
                             }
 

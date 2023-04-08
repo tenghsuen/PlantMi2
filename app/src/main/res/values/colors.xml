@@ -10,6 +10,5 @@
     <color name="dark_blue">#95A1AE</color>
     <color name="light_blue">#C8CFD6</color>
     <color name="text_color">#3B3F5F</color>
-    <color name="transparent">#FFFFFF</color>
-    <color name="translucent">#FFFFFF</color>
+    <color name="brown">#433C31</color>
 </resources>
