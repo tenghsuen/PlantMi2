@@ -17,6 +17,7 @@
         android:textStyle="bold"
         android:textSize="15sp"
         android:textColor="#000"/>
+
     <Button
         android:id="@+id/logout"
         android:text="Logout"
