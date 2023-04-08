@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         
+        DatabaseReference waterRef = FirebaseDatabase.getInstance().getReference().child("water_plant").child("value");
         waterButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
