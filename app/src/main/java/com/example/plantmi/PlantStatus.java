@@ -104,11 +104,8 @@ public class PlantStatus extends AppCompatActivity {
             }
         });
 
-        rootDatabaseReference = FirebaseDatabase.getInstance().getReference();
         databaseReference = rootDatabaseReference.child("sensor_data");
-        moistureData = findViewById(R.id.moistureLevelValue);
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        getData();
 
         String userUID = user.getUid();
         nameRootDatabaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(userUID).child("plantname");
@@ -140,28 +137,6 @@ public class PlantStatus extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 
-            }
-        });
-    }
-
-    private void getData() {
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for ( DataSnapshot postSnapshot: snapshot.getChildren() ){
-                    if (postSnapshot.equals("value")) {
-                        String value = postSnapshot.getValue(String.class);
-                        moistureData.setText(value);
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                // calling on cancelled method when we receive
-                // any error or we are not able to get the data.
-                Toast.makeText(PlantStatus.this, "Failed to get data.", Toast.LENGTH_SHORT).show();
             }
         });
     }
