@@ -108,8 +108,8 @@ public class PlantStatus extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         String userUID = user.getUid();
-        nameRootDatabaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(userUID).child("plantname");
-        descRootDatabaseReference = FirebaseDatabase.getInstance().getReference().child("users").child(userUID).child("plantdesc");
+        nameRootDatabaseReference = FirebaseDatabase.getInstance().getReference().child("plants").child(userUID).child("plantname");
+        descRootDatabaseReference = FirebaseDatabase.getInstance().getReference().child("plants").child(userUID).child("plantdesc");
         nameRootDatabaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {

@@ -1,18 +1,22 @@
 package com.example.plantmi;
 
+import java.sql.Time;
+
 public class User {
 
-    public String plantname;
-    public String plantdesc;
     public String user;
+    public String username;
+    public Time time;
 
     public User() {
     }
 
-    public User(String user, String plantname, String plantdesc) {
+    public User(String user) {
         this.user = user;
-        this.plantname = plantname;
-        this.plantdesc = plantdesc;
+        this.username = "Plant Pan";
     }
 
+    public void setTime(Time time) {
+        this.time = time;
+    }
 }
