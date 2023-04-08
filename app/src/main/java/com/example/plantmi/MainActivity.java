@@ -14,7 +14,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
-    Button timeBtn, logoutBtn;
+    Button timeBtn, logoutBtn, waterButton;
     FirebaseAuth auth;
     FirebaseUser user;
     TextView textView;
@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         logoutBtn=findViewById(R.id.logout);
         auth=FirebaseAuth.getInstance();
         timeBtn=findViewById(R.id.setTimeButton);
+        waterButton=findViewById(R.id.waterButton);
         textView=findViewById(R.id.user_email);
         user=auth.getCurrentUser();
         if (user==null){
@@ -45,6 +46,14 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        
+        waterButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                waterRef.setValue(true);
+            }
+        });
+        
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
